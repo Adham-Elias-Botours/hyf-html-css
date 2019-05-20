@@ -1,1 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <!--to detect the dimensions and scaling of the viewport. 
+    To make the page responsive by adding later CSS rules.-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--To view an icon on the page tab in the webbrowser (http://www.xiconeditor.com/)-->
+  <link rel="shortcut icon" href="images/favicon.ico" />
+  <meta charset="utf-8" />
+  <title>ROCKRIDER ST 520</title>
+  <style>
+    /* //standard styling for the body.// */
+    body {
+      padding: 0px;
+      margin: 0;
+      font-size: 14px;
+      font-family: Arial, Helvetica, sans-serif;
+      /*font-family: "Helvetica", sans-serif;*/
+    }
+
+    /* //--styling the top of the page, the title and the navigation bar.--// */
+    #div-top-page {
+      text-align: center;
+      width: 100%;
+      background: linear-gradient(to bottom, #0082c3 0%, #ffffff 80%);
+      padding-top: 4px;
+      /* to make the div always on the top of the browser window and infront of everything */
+      position: fixed;
+      top: 0px;
+      z-index: 1;
+      /* the fixed position is done successfully */
+    }
+
+    #span-page-title {
+      font-family: serif;
+      font-weight: 900;
+      font-size: 20px;
+      /* to make a line under the text and to make the line longer than the text */
+      padding: 0px 25px 0px 25px;
+      border-bottom: 3px solid #ffea28;
+    }
+
+    #div-nav-bar {
+      border-top: 4px solid black;
+      border-radius: 20px;
+      padding-top: 3px;
+      width: 90%;
+      font-size: 16px;
+      text-align: center;
+      /* to center the navigation bar horizontally and to make a space on the top and the bottom*/
+      margin: auto;
+      margin-top: 8px;
+      margin-bottom: 2px;
+    }
+
+    #div-nav-bar a {
+      color: black;
+      margin: 5px;
+      padding: 5px;
+      font-family: serif;
+      font-weight: bold;
+    }
+
+    #div-nav-bar a:hover {
+      color: #0082c3;
+    }
+
+    /*//--finished successfully: styling the top of the page---//*/
+
+    /* //--styling the contents of the page.-- //*/
+    /* To stylethe biggest div in the page, 
+it contans everything between the heading of the page and the end of the page.*/
+    #div-container {
+      margin: auto;
+      margin-top: 70px;
+      /*the heading of the page has a Fixed position and it will infront of this margin area*/
+      width: 95%;
+      /*to be sure that this div will go behind of the heading */
+      z-index: 0;
+    }
+
+    /*to style the div that contains a section from a text
+every section is in such a  div.*/
+    .div-page-content {
+      width: 90%;
+      padding-right: 10px;
+      padding-left: 10px;
+      margin: auto;
+      margin-bottom: 10px;
+      /* to prevent the div from jumpig out his parent when he has a long contnet,
+ in this case the height must not be specified. (trick)*/
+      overflow: hidden;
+    }
+
+    h1 {
+      /* to style the title of every section fromthe text. */
+      color: #45a4d3;
+      font-family: serif;
+      text-align: center;
+      font-size: 20px;
+      padding-bottom: 0px;
+      margin-bottom: 15px;
+      /* to control the absolute position of a child element (span), depending on
+ the position of this h1 element*/
+      /* (for more info: read PS1 here in the bottom of the page)*/
+      position: relative;
+    }
+
+    .span-vertical-space-maker {
+      /* to give this element (span), an absolute position depending on his parent's (h1) position*/
+      /* (for more info: read PS1 here in the bottom of the page)*/
+      position: absolute;
+      top: -90px;
+      /* he will go above and out his parent */
+    }
+
+    /* To style the right and the left column of the page.
+This page structure is simple good to make the page responsive  */
+    .div-left {
+      float: left;
+    }
+
+    .div-right {
+      float: right;
+    }
+
+    .div-left,
+    .div-right {
+      width: 45%;
+      text-align: left;
+      padding-right: 5px;
+      padding-left: 5px;
+    }
+
+    /* to style a vertical full wide div, to be used for wide fotos
+ or to put a section in one column instead of two */
+    .full-wide-div {
+      width: 100%;
+      text-align: center;
+      margin-top: 10px;
+      margin-bottom: 15px;
+    }
+
+    /* styling the the titels in the description section */
+    .title-paragraph {
+      /* a simple and easy way to convert the first sentence of a paragraph to a title */
+      color: #1E90FF;
+      padding-left: -5px;
+      font-weight: bolder;
+      font-size: 1.2em;
+      position: relative;
+      left: -10px;
+    }
+
+    /* images: all the imges between the pageheadign and the page footer */
+    #introduction-img {
+      width: 50%;
+      border-radius: 1em;
+    }
+
+    #bike-frame-img {
+      width: 60%;
+    }
+
+    .bike-img {
+      width: 22%;
+      margin: 2px;
+      border: 2px solid dodgerblue;
+      border-radius: 15px;
+    }
+
+    .bike-img:hover {
+      border-color: #ffea28;
+      border-radius: 25px;
+    }
+
+    .no-decoration-link {
+      /* To prevent the browser from giving an underline decoration to the photos that is in an anchor tag.  */
+      text-decoration: none;
+    }
+
+    /* table */
+    table {
+      margin: 10px auto 0px auto;
+      width: 50%;
+    }
+
+    /* to give the table a striped style*/
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    /* to give the first column a right alignmet, I learned it from the striped style */
+    th:nth-child(1),
+    td:nth-child(1) {
+      text-align: left;
+    }
+
+    th,
+    td {
+      padding: 6px;
+    }
+
+    th {
+      background-color: #5db0d9;
+      color: black;
+    }
+
+    /* contact us list and form */
+    #list-contact-us {
+      padding-left: 12px;
+    }
+
+    .div-form {
+      /* to style the div that contains the form */
+      width: 45%;
+      float: right;
+      border: 1px solid #ffea28;
+      background-color: lightyellow;
+      border-radius: 25px;
+      padding: 1em;
+      margin-top: 1em;
+      margin-bottom: 1em;
+      text-align: center;
+    }
+
+    input[type=text],
+    input[type=email],
+    textarea {
+      width: 90%;
+      padding: 4px;
+      border: 1px solid lightgray;
+      border-radius: 4px;
+      margin-bottom: 1em;
+    }
+
+    form p {
+      margin: 0px 0px 4px 0px;
+      width: 30%;
+      text-align: left;
+    }
+
+    textarea {
+      height: 70px;
+      overflow: auto;
+    }
+
+    /* //--finished successfully: styling the contents of the page--// */
+
+    /* //-- styling the footer of the page --// */
+    #div-end-page {
+      text-align: center;
+      width: 100%;
+      background: linear-gradient(to top, #0082c3 0%, #ffffff 100%);
+      margin-top: 10px;
+    }
+
+    .img-footer {
+      width: 6%;
+      margin: 10px 30px 10px 30px;
+    }
+
+    .img-footer-left {
+      float: left;
+    }
+
+    .img-footer-right {
+      float: right;
+    }
+
+    .img-footer-center {
+      float: none;
+    }
+
+    /* //--finished successfully: styling the footer of the page --// */
+
+    /* //-- mobile and tablet screen --//*/
+    @media (max-width: 767px) {
+      #div-container {
+        margin-top: 44px;
+      }
+
+      #span-page-title {
+        font-size: 15px;
+      }
+
+      #div-nav-bar {
+        width: 100%;
+        font-size: 0.6em;
+      }
+
+      .span-vertical-space-maker {
+        position: absolute;
+        top: -65px;
+      }
+
+      .bike-img {
+        width: 44%;
+      }
+
+      #introduction-img {
+        width: 80%;
+      }
+
+      .div-left,
+      .div-right {
+        float: none;
+        width: 100%;
+        margin: auto;
+      }
+
+      .div-form {
+        float: none;
+        width: 80%;
+        margin: 1.5em auto 1.5em auto;
+      }
+
+      #bike-frame-img {
+        width: 80%;
+      }
+
+      table {
+        width: 75%;
+      }
+
+      .img-footer {
+        width: 8%;
+      }
+    }
+
+    /* //-- finished successfully: mobile and tablet screen --//*/
+
+
+    /*//--finished successfully: styling the whole page---//*/
+  </style>
+
+</head>
+
+<body>
+  <!-- //Part 1: This is the top of the page, the title and the navigation links-->
+  <div id="div-top-page">
+    <span id="span-page-title">ROCKRIDER<sup>520</sup> </span>
+    <div id="div-nav-bar">
+      <!--  navigation bar -->
+      <a href="#Introduction">Introduction</a>
+      <a href="#Photos">Photos</a>
+      <a href="#Specifications">Specifications</a>
+      <a href="#Geometry">Geometry</a>
+      <a href="#Contact-us">Contact&nbsp;us</a>
+    </div>
+  </div>
+  <!-- //the end of Part 1-->
+
+  <!-- biggest div in the page, it contains everything between the heading of the page and the end of the page. -->
+  <div id="div-container">
+
+    <!-- //Part 2:Introduction -->
+    <div class="div-page-content">
+      <h1> <span id="Introduction" class="span-vertical-space-maker"> </span>Introduction</h1>
+
+      <div class="full-wide-div">
+        <img src="images/wide-st.png" alt="sport trail sign" id="introduction-img">
+      </div>
+
+      <div class="div-left">
+        <p><span class="title-paragraph"> Rockrider ST 520 mountain bike:</span><br />
+          This mountain bike is suitable for men and women and comes in a few sizes (and with an adjustable stem)
+          for different heights. It's a really fun and comfortable pick with 24 speeds, double-walled 27.5" wheels,
+          disc brakes and a hammock saddle.
+        </p>
+
+        <p> <span class="title-paragraph"> Sport trail:</span><br />
+          Trail riding is all about getting enjoyment out of the full benefits of mountain biking
+          in others' company: touring, surpassing yourself, exploring new pastures, challenging your friends,
+          always seeking out the thrill of riding. Decathlon's French brand Rockrider designs these products based on
+          what you want. Welcome to your Mountain Bike platform.
+        </p>
+      </div>
+
+      <div class="div-right">
+        <p> <span class="title-paragraph">Cycling comfort:</span><br />
+          Enjoy the raised position, adjustable stem, 80mm suspension and hollow saddle. </p>
+        <p> <span class="title-paragraph">Directional control:</span><br />
+          Control your path with the double disc brakes and notched tyres. </p>
+        <p> <span class="title-paragraph">Efficiency:</span><br />
+          Efficient cycling thanks to the 27.5" wheels, 24 speeds and aluminum frame. </p>
+        <p> <span class="title-paragraph">Ease of use:</span><br />
+          Use the wheel to adjust the fork to your weight. Easily adjust the saddle. </p>
+        <p> <span class="title-paragraph">Lifetime warranty:</span><br />
+          Rockrider provides a lifetime guarantee for the frame, stem and handlebars. </p>
+      </div>
+
+    </div>
+    <!-- //the end of Part 2-->
+
+    <!-- //Part 3:Photos -->
+    <div class="div-page-content">
+      <h1> <span id="Photos" class="span-vertical-space-maker"> </span> Photos</h1>
+
+      <div class="full-wide-div">
+        <a href="images/4a/NavyBlue-FluoLimeGreen.webp" target="_blank" class="no-decoration-link">
+          <img src="images/4a/NavyBlue-FluoLimeGreen.webp" alt="" class="bike-img">
+        </a>
+
+        <a href="images/4a/Black-CyanBlue.webp" target="_blank" class="no-decoration-link">
+          <img src="images/4a/Black-CyanBlue.webp" alt="" class="bike-img">
+        </a>
+
+        <a href="images/4a/FluoLimegreen-CyanBlue.webp" target="_blank" class="no-decoration-link">
+          <img src="images/4a/FluoLimegreen-CyanBlue.webp" alt="" class="bike-img">
+        </a>
+
+        <a href="images/4a/Anthracite-FluoLimeGreen.webp" target="_blank" class="no-decoration-link">
+          <img src="images/4a/Anthracite-FluoLimeGreen.webp" alt="" class="bike-img">
+        </a>
+
+      </div>
+
+      <div class="full-wide-div">
+        <a href="images/4b/4b1.webp" target="_blank" class="no-decoration-link">
+          <img src="images/4b/4b1.webp" alt="" class="bike-img">
+        </a>
+
+        <a href="images/4b/4b2.webp" target="_blank" class="no-decoration-link">
+          <img src="images/4b/4b2.webp" alt="" class="bike-img">
+        </a>
+
+        <a href="images/4b/4b3.webp" target="_blank" class="no-decoration-link">
+          <img src="images/4b/4b3.webp" alt="" class="bike-img">
+        </a>
+
+        <a href="images/4b/4b4.webp" target="_blank" class="no-decoration-link">
+          <img src="images/4b/4b4.webp" alt="" class="bike-img">
+        </a>
+
+      </div>
+
+      <div class="full-wide-div">
+        <a href="images/4c/4c1.webp" target="_blank" class="no-decoration-link">
+          <img src="images/4c/4c1.webp" alt="" class="bike-img">
+        </a>
+
+        <a href="images/4c/4c2.webp" target="_blank" class="no-decoration-link">
+          <img src="images/4c/4c2.webp" alt="" class="bike-img">
+        </a>
+
+        <a href="images/4c/4c3.webp" target="_blank" class="no-decoration-link">
+          <img src="images/4c/4c3.webp" alt="" class="bike-img">
+        </a>
+
+        <a href="images/4c/4c4.webp" target="_blank" class="no-decoration-link">
+          <img src="images/4c/4c4.webp" alt="" class="bike-img">
+        </a>
+
+      </div>
+
+    </div>
+    <!-- //the end of Part 3-->
+
+    <!-- //Part 4:Specifications -->
+    <div class="div-page-content">
+      <h1> <span id="Specifications" class="span-vertical-space-maker"> </span>Specifications</h1>
+
+      <div class="div-left">
+        <p><span class="title-paragraph"> What our team has to say: </span><br />
+          This ST 520 mountain bike has been entirely designed and developed at the B'Twin Village in France (Lillle).
+          We've designed, developed and tested the ST 520 MTB for comfort and efficiency.
+          This combines to give MTBers confidence to overcome any new obstacle.
+          We have involved real MTBers at every stage of this bike's design process.
+          And we hope that the Rockrider ST 520 is everything you could hope for to give you excellent MTB rides.
+        </p>
+
+        <p><span class="title-paragraph"> A unisex mountain bike:</span><br />
+          This Rockrider ST 520 mountain bike is unisex.</p>
+
+        <p> <span class="title-paragraph"> How to choose your st 520 mountain bike size:</span><br />
+          choose the right size depending on your tall</p>
+        <ul>
+          <li>S: between 1.50m and 1.64m</li>
+          <li>M: between 1.65m and 1.74m</li>
+          <li>L: between 1.75m and 1.84m</li>
+          <li>XL: between 1.85 m and 2.00 m</li>
+        </ul>
+
+        <p>
+          If you are on the limit between 2 sizes:<br />
+          Choose the smaller size for easier steering (easier to handle) and comfort (straighter back).<br />
+          Choose the larger size for easier pedalling with a more stretched-out position (position more suited to
+          performance).
+        </p>
+
+        <p><span class="title-paragraph"> A comfortable, playful frame:</span><br />
+          For a lighter weight and more efficient pedalling, the Rockrider ST 520 frame has been designed with 6061
+          aluminium
+          (only 1.9 kg in size M). Our designers have designed and developed it so it is comfortable and easy to
+          manoeuvre.
+          Its slope has been designed to keep your back straighter. The lower bottom bracket helps keep you more stable
+          during turns.
+        </p>
+
+        <p><span class="title-paragraph"> Front suspension to cushion unpredictable terrain:</span><br />
+          Directly adjust the stiffness of the suspension to your weight, from 55kg to 105kg, to more easily travel over
+          roots and stones.
+          This is all thanks to the UFIT concept (exclusive to Decathlon).
+          Easy: simply turn the adjustment wheel to fit your weight!
+          The 80 mm front suspension is designed for slightly uneven trails and helps you overcome your obstacles with
+          no worries.
+          It is based on a mechanical spring and is reliable. And it's easy to look after.
+        </p>
+
+        <p><span class="title-paragraph"> Rear suspension: none:</span><br />
+          This mountain bike has no rear suspension. This is a "semi-rigid" mountain bike.
+          Compared to a full suspension mountain bike (with rear suspension), the advantages are clear: lighter weight,
+          you will spend less energy on flat ground. However, if you want more comfort, the ST 520 MTB also exists in a
+          "full suspension" version with a rear shock absorber.
+        </p>
+
+        <p><span class="title-paragraph"> Derailleur & drive train: how to change speeds:</span><br />
+          3 8-speed chainwheels, or a wide range of 24 speeds.
+          2 quick shifters on the handlebar.
+          Left (chainwheels): control ascents/descents.
+          Right (speeds): more precise control over your pedalling. In detail:
+        </p>
+        <ul>
+          <li>Triple chainwheels - 22, 32 and 42 teeth.</li>
+          <li>SHIMANO Altus or MICROSHIFT FD-M22 front derailleur.</li>
+          <li>SRAM X3 rear derailleur.</li>
+          <li>SRAM X4 shifters, with speed indicators.</li>
+          <li>SRAM PG820 8 cog cassette, 11 to 32 teeth.</li>
+        </ul>
+
+        <p><span class="title-paragraph"> Saddle / seat post: comfortable and sporty seat:</span><br />
+          Our teams conceived and designed an exclusive saddle for this bike. Suitable for different hip sizes,
+          its "hammock" shape is particularly good for sport touring. The Flex 27.2mm diameter aluminium seatpost
+          also contributes to its increased level of comfort.
+          <br />Quick and easy tool-free adjustment of your saddle height using the adjustment lever on the seat post
+          clamp.
+        </p>
+
+      </div>
+
+      <div class="div-right">
+        <p><span class="title-paragraph"> Handlebar, stem, grips: take control of the handlebars:</span><br />
+          With its adjustable stem, the ST 520 controls are close at hand. The all-aluminium B'Twin stem is 70 mm (size
+          S), 80 mm (size M/L), or 90 mm (size XL) and can be raised using 5 adjustment intervals: + 0mm, + 7.5mm, +
+          15mm, + 22.5mm, + 30mm.
+          In detail:
+        </p>
+        <ul>
+          <li>680mm oversized aluminium handlebars</li>
+          <li>Soft touch B'Twin sport grips for good grip and a comfortable feel.</li>
+        </ul>
+
+        <p><span class="title-paragraph"> Mechanical disc brakes: get a grip on your braking:</span><br />
+          The HAYES M-X5 mechanical double disc brakes give you gradual, powerful braking at the front and back.
+          Whilst the aluminium Tektro brake levers are light, precise, and easy to hold. Just two fingers are all you
+          need to brake.
+          Try to get your brakes adjusted at least once a year.
+        </p>
+
+        <p><span class="title-paragraph"> 27.5" double-walled wheels & tyres for dry ground:</span><br />
+          Take on obstacles! The aluminium wheels are effective and sturdy: 27.5" double-walled rims.
+          Their diameter is the perfect balance between comfort and performance. With their 28 spokes,
+          they are lightweight, stiff, and durable.The exclusive 27.5" x 2.0 B'TWIN ALL TERRAIN DRY tyres are designed
+          for dry terrain.
+          Their side lugs provide good traction during turns.
+          The recommended tyre pressure according to the weight of the rider is marked on the tyre sidewall.
+        </p>
+
+        <p><span class="title-paragraph"> Platform pedals:</span><br />
+          The ST 520 is supplied with platform MTB pedals mounted on bearings, made from resin for light weight and
+          safety.
+          If your foot slides on the pedal, there's less risk of injury.
+        </p>
+
+        <p><span class="title-paragraph"> Easily transport and store your mountain bike:</span><br />
+          Not all rides start on your doorstep. Need to remove the front wheel?
+          It's easy thanks to the integrated clamping lever.
+          And the rear wheel? There is a nut at the back to secure the bike and limit the risk of theft.
+          A flat spanner is needed to remove the rear wheel.
+          A bike carrier will make your life easier if you want to avoid dirtying your car
+        </p>
+
+        <p><span class="title-paragraph"> Accessories:</span><br />
+          Your ST 520 mountain bike is supplied with a bell, lights, wheel reflectors and pedals.
+          The frame is compatible with:
+        </p>
+        <ul>
+          <li>Front and rear mudguards</li>
+          <li>Stand</li>
+          <li>Bottle cageg</li>
+          <li>Saddle bag</li>
+          <li>Rear pannier rack</li>
+          <li>Child seat (add an additional pannier rack for sizes S and M to avoid touching the rear wheel).</li>
+        </ul>
+
+        <p><span class="title-paragraph"> Our advice for your first few rides:</span></p>
+        <ol>
+          <li>When mountain biking, there is always the risk of a fall: don't forget to wear a helmet.</li>
+          <li>Even if the saddle is comfortable, cycling shorts with a pad (saddle-shaped foam) are a real plus for
+            preventing glute pain.</li>
+          <li>If you don't want to stop to drink, bring water in a bottle or water bladder to access it while riding.
+          </li>
+          <li>Punctures are always possible, remember to bring a repair kit.</li>
+        </ol>
+
+        <p><span class="title-paragraph"> Weight:</span></p>
+        <ul>
+          <li>Size S: 14.35 kg</li>
+          <li>Size M: 14.45 kg</li>
+          <li>Size L: 14.55 kg</li>
+          <li>Size XL: 14.7 kg</li>
+        </ul>
+
+      </div>
+
+    </div>
+    <!-- //the end of Part 4-->
+
+    <!-- //Part 5:Geometry -->
+    <div class="div-page-content">
+      <h1> <span id="Geometry" class="span-vertical-space-maker"> </span>Geometry</h1>
+
+      <div class="full-wide-div"><img src="images/RR520-frame.png" alt="Frame geometry" id="bike-frame-img"></div>
+
+      <div class="full-wide-div">
+        <table>
+          <tr>
+            <th>Indication</th>
+            <th>S</th>
+            <th>M</th>
+            <th>L</th>
+            <th>XL</th>
+          </tr>
+
+          <tr>
+            <td>TT Length</td>
+            <td>555 mm</td>
+            <td>585 mm</td>
+            <td>615 mm</td>
+            <td>635 mm</td>
+          </tr>
+
+          <tr>
+            <td>ST Length</td>
+            <td>421 mm</td>
+            <td>432 mm</td>
+            <td>443 mm</td>
+            <td>493 mm</td>
+          </tr>
+
+          <tr>
+            <td>HT Length</td>
+            <td>110 mm </td>
+            <td>130 mm</td>
+            <td>140 mm </td>
+            <td>160 mm</td>
+          </tr>
+
+          <tr>
+            <td>F Length</td>
+            <td>385 mm</td>
+            <td>385 mm</td>
+            <td>385 mm</td>
+            <td>385 mm</td>
+          </tr>
+
+          <tr>
+            <td>Rake </td>
+            <td> 42 mm</td>
+            <td>42 mm</td>
+            <td>42 mm</td>
+            <td>42 mm</td>
+          </tr>
+
+          <tr>
+            <td>BB Height</td>
+            <td>307 mm</td>
+            <td>307 mm</td>
+            <td>307 mm</td>
+            <td>307 mm</td>
+          </tr>
+
+          <tr>
+            <td>BB Drop</td>
+            <td> 43 mm</td>
+            <td> 43 mm</td>
+            <td>43 mm </td>
+            <td> 43 mm</td>
+          </tr>
+
+          <tr>
+            <td>Stack</td>
+            <td> 545 mm</td>
+            <td>564 mm</td>
+            <td> 573 mm</td>
+            <td>592 mm</td>
+          </tr>
+
+          <tr>
+            <td>Reach</td>
+            <td>375 mm</td>
+            <td>399 mm</td>
+            <td>426 mm</td>
+            <td>441 mm</td>
+          </tr>
+
+          <tr>
+            <td>CS Length (Horizontal)</td>
+            <td>430 mm</td>
+            <td>430 mm</td>
+            <td> 430 mm</td>
+            <td>430 mm</td>
+          </tr>
+
+          <tr>
+            <td>Wheel Base</td>
+            <td> 1090 mm</td>
+            <td> 1126 mm</td>
+            <td> 1157 mm</td>
+            <td> 1183 mm</td>
+          </tr>
+
+          <tr>
+            <td>ST Angle</td>
+            <td>73°</td>
+            <td>73°</td>
+            <td> 73°</td>
+            <td>73°</td>
+          </tr>
+
+          <tr>
+            <td>HT Angle</td>
+            <td>69,5°</td>
+            <td>69,5°</td>
+            <td> 69,5°</td>
+            <td>69,5°</td>
+          </tr>
+
+          <tr>
+            <td>stem Length</td>
+            <td>70 mm</td>
+            <td>70 mm</td>
+            <td>80 mm</td>
+            <td>90 mm</td>
+          </tr>
+
+          <tr>
+            <td>Handlebar Width</td>
+            <td>640 mm</td>
+            <td>640 mm</td>
+            <td>680 mm</td>
+            <td>680 mm</td>
+          </tr>
+
+        </table>
+      </div>
+    </div>
+    <!-- //the end of Part 5-->
+
+
+
+    <!-- //Part 6:Contact us -->
+    <div class="div-page-content">
+      <h1> <span id="Contact-us" class="span-vertical-space-maker"> </span>Contact&nbsp;us</h1>
+
+      <div class="div-left">
+        <ul id="list-contact-us">
+          <li>
+            We will be glad to receive your questions.
+            Please fill your details in the form, and in 24 hour
+            our mountain biking specialists will answer that with professional information and details.
+          </li> <br />
+
+          <li>
+            To know about the price or to buy RockRider ST 520:<br />
+            English:<a href="https://www.decathlon.co.uk/st-520-mountain-bike-275-blue-id_8351007.html" target="_blank">
+              Click here.</a><br />
+            Dutch: <a
+              href="https://www.decathlon.nl/p/mtb-rockrider-st-520-27-5-sram-x3-3x8-speed-mountainbike/_/R-p-120236?mc=8351007&c=BLAUW"
+              target="_blank"> Click here.</a>
+          </li> <br />
+
+          <li>
+            For more information about all our other mountain bikes categories, Sport Trail (ST),
+            Cross Country (XC) and All Mountain (AM): <a
+              href="http://press.btwin.com/en_GB/mountain-bikes-universe.html" target="_blank">Click here.</a>
+          </li> <br />
+
+          <li>
+            To know more about all our others bikes categories,
+            Mountain bikes, Road Bikes, Children's Bikes,
+            City Bikes, Intermodal Bikes and Hybrid Bikes: <a href="http://press.btwin.com/en_GB/homepage.html"
+              target="_blank">Click here.</a>
+          </li> <br />
+
+          <li> This webpage is not a real website. It is a personal project during my self-study period.
+            <br />Regards,
+            <br />A.E.B
+          </li>
+        </ul>
+      </div>
+
+
+      <div class="div-form">
+        <form action="mailto:a2neverever@gmail.com" method="post" enctype="text/plain">
+
+          <p>*Name:</p>
+          <input type="text" name="cleint-name" maxlength="30" required="required"
+            title="Required.&#13;Maximum 30 characters.">
+
+          <p>*City&nbsp;and&nbsp;coutry:</p>
+          <input type="text" name="country-city" maxlength="30" required="required"
+            title="Required.&#13;Maximum 30 characters.">
+
+          <p>*Subjuct:</p>
+          <input type="text" name="cleint-name" maxlength="30" required="required"
+            title="Required.&#13;Maximum 30 characters.">
+
+          <p>*E-mail:</p>
+          <input type="email" name="cleint-email" maxlength="50" required="required"
+            title="Required.&#13;Maximum 50 characters.">
+
+          <p>*Your&nbsp;letter:</p>
+          <textarea name="the-letter" maxlength="1000" required="required"
+            title="Required.&#13;Maximum 1000 characters."></textarea>
+
+          <input type="reset" value="Clear all fields"> &nbsp;
+          <input type="submit" value="Send">
+
+        </form>
+      </div>
+    </div>
+
+    <!-- //the end of Part 6-->
+
+
+  </div>
+  <div id="div-end-page">
+    <img src="images\footer\logo_btwin.png" alt="" class="img-footer img-footer-left">
+    <img src="images\footer\H-Y-F-logo.svg" alt="" class="img-footer img-footer-center">
+    <img src="images\footer\Decathlon-Logo.png" alt="" class="img-footer img-footer-right">
+  </div>
+</body>
+
+<!--
+*PS1 : I am using a simple navigation bar with a fixed position. 
+All the links are internal, the bookmarks IDs are in the same page.
+-The problem was that when the link is clicked then the bookmark 
+ goes behind the header,behind the navigation bar.
+-The solution: putting the bookmark ID in an inline element (span), 
+and they are together in a block element (h1). 
+Then to make a vertical space between the (span) and the (h1) by using the CSS Position property.
+So when a link is clicked then the bookmark with the span will scroll up and goes behind the header 
+with vertically space under them, then comes the (h1)   
+-->
+
+
+</html>
