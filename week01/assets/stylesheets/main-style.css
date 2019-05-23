@@ -15,6 +15,9 @@
     padding:0px
 }
 
+h3{
+    text-align: center;
+}
 a {
     padding: 6px;
     margin: 4px;
@@ -66,5 +69,8 @@ ul
    img{
        float: right;
        margin-right: 10%;
+   }
+   h3{
+       text-align: left;
    }
 }
